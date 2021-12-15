@@ -18,7 +18,8 @@ const onClickNumber=(event)=>{
   numTwo += event.target.textContent;
   $result.value += event.target.textContent; 
 } 
-const onClickOperator=(operator)=>(event)=>{
+
+const onClickOperator=(op)=>(event)=>{
   if(numOne){
     operator = op;
     $operator.value = op;
@@ -41,5 +42,28 @@ document.querySelector('#plus').addEventListener('click',onClickOperator('+'));
 document.querySelector('#minus').addEventListener('click',onClickOperator('-'));
 document.querySelector('#divide').addEventListener('click',onClickOperator('/'));
 document.querySelector('#multiply').addEventListener('click',onClickOperator('*'));
-document.querySelector('#calculate').addEventListener('click',()=>{});
+document.querySelector('#calculate').addEventListener('click',()=>{
+  if(numTwo){
+    switch (operator){
+      case '+': // +는 문자열을 숫자열로 자동으로 변환이 안된다! 
+        $result.value = parseInt(numOne)+parseInt(numTwo);
+        //각각을 더할 때는 parseInt함수를 사용해서 숫자로 바꾼후 연산한다
+        break;
+      case '-':
+        $result.value = numOne - numTwo;
+        break;
+      case '*':
+        $result.value = numOne * numTwo;
+        break;
+      case '/':
+        $result.value = numOne / numTwo;
+        break;
+      default:
+        break;
+    }
+  }
+  else{
+    alert('숫자를 먼저 입력하세요.');
+  }
+});
 document.querySelector('#clear').addEventListener('click',()=>{});
