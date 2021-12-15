@@ -4,15 +4,20 @@ let operator=''; // 연산자 저장
 const $operator = document.querySelector('#operator');
 const $result = document.querySelector('#result');
 
-const onClickNumber=(event)=>{
-  if(operator){
-    numTwo += event.target.textContent;
-  }
-  else{
+const onClickNumber=(event)=>{ 
+  // *if문 중첩 제거*
+  if(!operator){ // 연산자가 없으면,
     numOne += event.target.textContent;
+    $result.value += event.target.textContent; // 변수에 저장한 값을 화면에 표시
+    return; // 함수 종료
   }
-  $result.value += event.target.textContent; // 변수에 저장한 값을 화면에 표시
-}
+  // -----연산자가 있을 경우에 아래 실행-----
+  if(!numTwo){ // 숫자2가 없으면,
+    $result.value=''; // 화면을 비운다
+  }
+  numTwo += event.target.textContent;
+  $result.value += event.target.textContent; 
+} 
 const onClickOperator=(operator)=>(event)=>{
   if(numOne){
     operator = op;
