@@ -66,4 +66,11 @@ document.querySelector('#calculate').addEventListener('click',()=>{
     alert('숫자를 먼저 입력하세요.');
   }
 });
-document.querySelector('#clear').addEventListener('click',()=>{});
+document.querySelector('#clear').addEventListener('click',()=>{
+  //모든 값 초기화
+  numOne='';
+  numTwo='';
+  operator='';
+  $result.value='';
+  $operator.value='';
+});
