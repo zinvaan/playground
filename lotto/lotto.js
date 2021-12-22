@@ -21,19 +21,19 @@ console.log(winBalls, bonus);
 
 // *Timer (1000ms)
 const $result = document.querySelector('#result');
-for(let i=0;i<winBalls.length;i++){
-  setTimeout(() => { // setTimeout(ms 이후 실행, ms(시간))
-    const $ball = document.createElement('div');
+function drawBall(number, $parent){
+  const $ball = document.createElement('div');
     $ball.className = 'ball';
     $ball.textContent = winBalls[i];
-    $result.appendChild($ball);
+    $parent.appendChild($ball);
+}
+for(let i=0;i<winBalls.length;i++){
+  setTimeout(() => { // setTimeout(ms 이후 실행, ms(시간))
+    drawBall(winBalls[i], $result);
   }, 1000*(i+1));  
 }
 
 const $bonus = document.querySelector('#bonus');
 setTimeout(() => {
-  const $ball = document.createElement('div');
-  $ball.className = 'ball';
-  $ball.textContent = bonus;
-  $bonus.appendChild($ball);
+  drawBall(bonus, $bonus);
 }, 7000);
