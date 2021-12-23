@@ -28,6 +28,5 @@ const changeComputerHand = () => {
   }
   $computer.style.background = `url(${IMG_URL}) ${rspX[computerChoice]} 0`;
   $computer.style.backgroundSize = 'auto 200px';
-  setTimeout(changeComputerHand, 50); // 함수가 끝나기 직전에 다시 타이머 작동시킴
 }
-setTimeout(changeComputerHand, 50); // 0.05초 마다 함수 실행
+setInterval(changeComputerHand, 50);
