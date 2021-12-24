@@ -29,4 +29,15 @@ const changeComputerHand = () => {
   $computer.style.background = `url(${IMG_URL}) ${rspX[computerChoice]} 0`;
   $computer.style.backgroundSize = 'auto 200px';
 }
-setInterval(changeComputerHand, 50);
+// 버튼을 클릭하면 setInterval이 멈췄다가 1초 뒤에 다시 실행
+let intervalID = setInterval(changeComputerHand, 50);
+const clickButton = () => {
+  clearInterval(intervalID);
+  // 점수 계산 및 화면 표시
+  setTimeout(() => {
+    intervalID = setInterval(changeComputerHand, 50);
+  }, 1000);
+}
+$rock.addEventListener('click', clickButton);
+$scissors.addEventListener('click', clickButton);
+$paper.addEventListener('click', clickButton);
