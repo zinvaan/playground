@@ -33,8 +33,14 @@ const changeComputerHand = () => {
 let intervalID = setInterval(changeComputerHand, 50);
 const clickButton = () => {
   clearInterval(intervalID);
+    $rock.removeEventListener('click', clickButton);
+    $scissors.removeEventListener('click', clickButton);
+    $paper.removeEventListener('click', clickButton);
   // 점수 계산 및 화면 표시
   setTimeout(() => {
+    $rock.addEventListener('click', clickButton);
+    $scissors.addEventListener('click', clickButton);
+    $paper.addEventListener('click', clickButton);
     intervalID = setInterval(changeComputerHand, 50);
   }, 1000);
 }
