@@ -31,18 +31,18 @@ const changeComputerHand = () => {
 }
 // 버튼을 클릭하면 setInterval이 멈췄다가 1초 뒤에 다시 실행
 let intervalID = setInterval(changeComputerHand, 50);
+let clickable = true;
 const clickButton = () => {
-  clearInterval(intervalID);
-    $rock.removeEventListener('click', clickButton);
-    $scissors.removeEventListener('click', clickButton);
-    $paper.removeEventListener('click', clickButton);
+  if(clickable){ // 버튼을 클릭하는 동안 false
+    clearInterval(intervalID);
+    clickable = false;
+ 
   // 점수 계산 및 화면 표시
   setTimeout(() => {
-    $rock.addEventListener('click', clickButton);
-    $scissors.addEventListener('click', clickButton);
-    $paper.addEventListener('click', clickButton);
+    clickable =true;
     intervalID = setInterval(changeComputerHand, 50);
   }, 1000);
+  }
 }
 $rock.addEventListener('click', clickButton);
 $scissors.addEventListener('click', clickButton);
