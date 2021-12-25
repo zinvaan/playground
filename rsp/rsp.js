@@ -36,12 +36,47 @@ const clickButton = () => {
   if(clickable){ // 버튼을 클릭하는 동안 false
     clearInterval(intervalID);
     clickable = false;
+
+    // 어떤 선택지를 클릭했는지 알아내기
     const myChoice = event.target.textContent === '바위' // event.target.textContent를 사용하면 글자를 알아 낼 수 있다
     ? 'rock'
     : event.target.textContent === '가위'
     ? 'scissors'
     : 'paper';
- 
+  //가위바위보 승패, 무승부
+  if(myChoice === 'rock'){
+    if(computerChoice === 'rock'){
+      console.log('무승부');
+    }
+    else if(computerChoice === 'scissors'){
+      console.log('승리')
+    }
+    else if(computerChoice === 'paper'){
+      console.log('패배');
+    }
+  }
+  else if(myChoice === 'scissors'){
+    if(computerChoice === 'rock'){
+      console.log('패배');
+    }
+    else if(computerChoice === 'scissors'){
+      console.log('무승부')
+    }
+    else if(computerChoice === 'paper'){
+      console.log('승리');
+    }
+  }
+  else if(myChoice === 'paper'){
+    if(computerChoice === 'rock'){
+      console.log('승리');
+    }
+    else if(computerChoice === 'scissors'){
+      console.log('패배')
+    }
+    else if(computerChoice === 'paper'){
+      console.log('무승부');
+    }
+  }
   // 점수 계산 및 화면 표시
   setTimeout(() => {
     clickable =true;
