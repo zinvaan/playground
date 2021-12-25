@@ -36,6 +36,11 @@ const clickButton = () => {
   if(clickable){ // 버튼을 클릭하는 동안 false
     clearInterval(intervalID);
     clickable = false;
+    const myChoice = event.target.textContent === '바위' // event.target.textContent를 사용하면 글자를 알아 낼 수 있다
+    ? 'rock'
+    : event.target.textContent === '가위'
+    ? 'scissors'
+    : 'paper';
  
   // 점수 계산 및 화면 표시
   setTimeout(() => {
