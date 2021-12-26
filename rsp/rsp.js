@@ -31,13 +31,20 @@ const changeComputerHand = () => {
 }
 // 버튼을 클릭하면 setInterval이 멈췄다가 1초 뒤에 다시 실행
 let intervalID = setInterval(changeComputerHand, 50);
-
+// 점수표(나-컴퓨터)
+// 가위: 1, 바위: 0, 보: -1
+// 나/컴퓨터 가위 바위 보
+// 가위       0    1   2
+// 바위      -1    0   1
+// 보        -2   -1   0
 const scoreTable = {
   rock: 0,
   scissors: 1,
   paper: -1,
 }
+
 let clickable = true;
+let score = 0;
 const clickButton = () => {
   if(clickable){ // 버튼을 클릭하는 동안 false
     clearInterval(intervalID);
@@ -49,20 +56,24 @@ const clickButton = () => {
     : event.target.textContent === '가위'
     ? 'scissors'
     : 'paper';
-  //가위바위보 승패, 무승부
+  //가위바위보 승패, 무승부(점수표 활용)
   const myScore = scoreTable[myChoice];
   const computerScore = scoreTable[computerChoice];
   const diff = myScore - computerScore;
-  if(diff === 2 || diff === -1){
-    console.log('승리');
+  let message;
+  if([2,-1].includes(diff)){
+    score += 1;
+    message = '승리';
   }
-  else if(diff === -2 || diff === 1){
-    console.log('패배');
+  else if([-2,1].includes(diff)){
+    score -= 1;
+    message = '패배';
   }
   else{
-    console.log('무승부');
+    message = '무승부';
   }
   // 점수 계산 및 화면 표시
+  $score.textContent = `${message} 총: ${score}점`;
   setTimeout(() => {
     clickable =true;
     intervalID = setInterval(changeComputerHand, 50);
