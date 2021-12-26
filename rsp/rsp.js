@@ -31,6 +31,12 @@ const changeComputerHand = () => {
 }
 // 버튼을 클릭하면 setInterval이 멈췄다가 1초 뒤에 다시 실행
 let intervalID = setInterval(changeComputerHand, 50);
+
+const scoreTable = {
+  rock: 0,
+  scissors: 1,
+  paper: -1,
+}
 let clickable = true;
 const clickButton = () => {
   if(clickable){ // 버튼을 클릭하는 동안 false
@@ -44,38 +50,17 @@ const clickButton = () => {
     ? 'scissors'
     : 'paper';
   //가위바위보 승패, 무승부
-  if(myChoice === 'rock'){
-    if(computerChoice === 'rock'){
-      console.log('무승부');
-    }
-    else if(computerChoice === 'scissors'){
-      console.log('승리')
-    }
-    else if(computerChoice === 'paper'){
-      console.log('패배');
-    }
+  const myScore = scoreTable[myChoice];
+  const computerScore = scoreTable[computerChoice];
+  const diff = myScore - computerScore;
+  if(diff === 2 || diff === -1){
+    console.log('승리');
   }
-  else if(myChoice === 'scissors'){
-    if(computerChoice === 'rock'){
-      console.log('패배');
-    }
-    else if(computerChoice === 'scissors'){
-      console.log('무승부')
-    }
-    else if(computerChoice === 'paper'){
-      console.log('승리');
-    }
+  else if(diff === -2 || diff === 1){
+    console.log('패배');
   }
-  else if(myChoice === 'paper'){
-    if(computerChoice === 'rock'){
-      console.log('승리');
-    }
-    else if(computerChoice === 'scissors'){
-      console.log('패배')
-    }
-    else if(computerChoice === 'paper'){
-      console.log('무승부');
-    }
+  else{
+    console.log('무승부');
   }
   // 점수 계산 및 화면 표시
   setTimeout(() => {
