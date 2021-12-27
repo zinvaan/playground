@@ -5,8 +5,10 @@
   user-select: none;
 }
 #screen.waiting {
+  /*대기화면(aqua)화면*/
   background-color: aqua;
 }
 #screen.now {
+  /* 클릭화면(greenyello)*/
   background-color: greenyellow;
 }
