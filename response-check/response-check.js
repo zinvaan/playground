@@ -3,12 +3,14 @@ const $result = document.querySelector('#result');
 
 let startTime;
 let endTime;
+const records = []; // 반응속도 기록
 
 $screen.addEventListener('click', function(){
     if($screen.classList.contains('waiting')){//대기화면
         $screen.classList.remove('waiting');
         $screen.classList.add('ready');
         $screen.textContent = '초록색이 되면 클릭하세요';
+
         setTimeout(function(){
             startTime = new Date();
             $screen.classList.remove('ready');
@@ -21,7 +23,14 @@ $screen.addEventListener('click', function(){
     }
     else if($screen.classList.contains('now')){//클릭화면
         endTime = new Date();
-        $result.textContent = `${endTime - startTime}ms`;
+        const current = endTime - startTime;
+        records.push(current);
+
+        const average = records.reduce((a,c)=>a+c) / records.length;
+        $result.textContent = `현재 ${current}ms, 평균 ${average}ms`;
+        startTime = null;// 반복 측정해야 하므로 측정 끝날 때 마다 null로 비움
+        endTime = null; // 반복 측정해야 하므로 측정 끝날 때 마다 null로 비움
+
         $screen.classList.remove('now');
         $screen.classList.add('waiting');
         $screen.textContent = '클릭해서 시작하세요.';
