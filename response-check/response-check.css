@@ -8,6 +8,10 @@
   /*대기화면(aqua)화면*/
   background-color: aqua;
 }
+#screen.ready {
+  background-color: red;
+  color: white;
+}
 #screen.now {
   /* 클릭화면(greenyello)*/
   background-color: greenyellow;
