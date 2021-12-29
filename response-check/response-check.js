@@ -8,21 +8,24 @@ const records = []; // 반응속도 기록
 
 $screen.addEventListener('click', function(){
     if($screen.classList.contains('waiting')){//대기화면
-        $screen.classList.remove('waiting');
-        $screen.classList.add('ready');
+        $screen.classList.replace('waiting', 'ready');
+        // $screen.classList.remove('waiting');
+        // $screen.classList.add('ready');
         $screen.textContent = '초록색이 되면 클릭하세요';
 
         timeoutId = setTimeout(function(){
             startTime = new Date();
-            $screen.classList.remove('ready');
-            $screen.classList.add('now');
+            $screen.classList.replace('ready','now');
+            // $screen.classList.remove('ready');
+            // $screen.classList.add('now');
             $screen.textContent = '클릭하세요!';
         }, Math.floor(Math.random()*1000)+2000); // 2000~3000초 사이 수
     }
     else if($screen.classList.contains('ready')){//준비화면
         clearTimeout(timeoutId);
-        $screen.classList.remove('ready');
-        $screen.classList.add('waiting');
+        $screen.classList.replace('ready','waiting');
+        // $screen.classList.remove('ready');
+        // $screen.classList.add('waiting');
         $screen.textContent = '너무 성급하시군요!';
     }
     else if($screen.classList.contains('now')){//클릭화면
