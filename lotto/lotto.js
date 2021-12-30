@@ -23,7 +23,7 @@ const $result = document.querySelector('#result');
 function drawBall(number, $parent){
   const $ball = document.createElement('div');
     $ball.className = 'ball';
-    $ball.textContent = winBalls[i];
+    $ball.textContent = number;
     $parent.appendChild($ball);
 }
 for(let i=0;i<winBalls.length;i++){
