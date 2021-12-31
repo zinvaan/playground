@@ -11,6 +11,13 @@ const callback = (event) =>{
     else{ // 빈칸이면,
         console.log('빈칸입니다.');
         event.target.textContent = turn;
+        turn = turn == 'X' ? 'O' : 'X'; // callback 함수 마지막에서 turn이 O이면 X, X면 O로 바꾼다.
+        //조건부연산자 대신 if문 사용가능
+        // if(turn === 'X'){
+        // turn = 'O';
+        // } else{
+        // turn = 'X';
+        // }
     }
 }
 for(let i=1;i<=3;i++){
