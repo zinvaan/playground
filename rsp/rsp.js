@@ -43,13 +43,12 @@ const scoreTable = {
   paper: -1,
 }
 
-let clickable = true;
+let clickable = true; // flag 변수
 let score = 0;
 const clickButton = () => {
-  if(clickable){ // 버튼을 클릭하는 동안 false
+  if(clickable){ // 버튼을 클릭하는 동안 내부코드 실행(true)
     clearInterval(intervalID);
-    clickable = false;
-
+    clickable = false; // 클릭은 되지만 false이기 때문에 내부 코드는 실행 안됨
     // 어떤 선택지를 클릭했는지 알아내기
     const myChoice = event.target.textContent === '바위' // event.target.textContent를 사용하면 글자를 알아 낼 수 있다
     ? 'rock'
