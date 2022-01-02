@@ -14,7 +14,6 @@ const checkWinner = (target) => {
             }
         });
     });
-}
 // 세 칸 다 채워졌다면,
 let hasWinner = false;
 // 가로줄 검사
@@ -47,7 +46,9 @@ if(
     rows[2][0].textContent === turn
 ){
     hasWinner = true;
-};
+ };
+ return hasWinner;
+}
 
 const callback = (event) =>{
     if(event.target.textContent !==''){ // 칸이 이미 채워져 있으면,
