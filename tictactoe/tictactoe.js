@@ -3,6 +3,51 @@ const $table = document.createElement('table');
 const $result = document.createElement('div'); // 결과창
 const rows =[];
 let turn = 'O';
+const checkWinner = (target) => {
+    let rowIndex;
+    let cellIndex;
+    rows.forEach((row,ri)=>{
+        row.forEach((cell,ci)=>{
+            if(cell === target){
+                rowIndex = ri;
+                cellIndex = ci;
+            }
+        });
+    });
+}
+// 세 칸 다 채워졌다면,
+let hasWinner = false;
+// 가로줄 검사
+if(
+    rows[rowIndex[0]].textContent === turn &&
+    rows[rowIndex[1]].textContent === turn &&
+    rows[rowIndex[2]].textContent === turn
+){
+    hasWinner = true;
+}
+// 세로줄 검사
+if(
+    rows[cellIndex[0]].textContent === turn &&
+    rows[cellIndex[1]].textContent === turn &&
+    rows[cellIndex[2]].textContent === turn
+){
+    hasWinner = true;
+}
+// 대각선 검사
+if(
+    rows[0][0].textContent === turn &&
+    rows[1][1].textContent === turn &&
+    rows[2][2].textContent === turn
+){
+    hasWinner = true;
+}
+if(
+    rows[0][2].textContent === turn &&
+    rows[1][1].textContent === turn &&
+    rows[2][0].textContent === turn
+){
+    hasWinner = true;
+};
 
 const callback = (event) =>{
     if(event.target.textContent !==''){ // 칸이 이미 채워져 있으면,
