@@ -25,12 +25,13 @@ for(let i=1;i<=3;i++){
     const cells =[];
     for(let j=1;j<=3;j++){
         const $td = document.createElement('td'); // td:표의 세로줄
-        $td.addEventListener('click', callback);
+        // $td.addEventListener('click', callback);
         cells.push($td);
         $tr.appendChild($td);
     }
     rows.push(cells);
     $table.appendChild($tr);
+    $table.addEventListener('click', callback); // $td 이벤트리스너 제거, $table 이벤트리스너 추가
 }
 body.appendChild($table);
 body.appendChild($result);
