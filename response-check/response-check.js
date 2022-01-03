@@ -7,13 +7,13 @@ let timeoutId;
 const records = []; // 반응속도 기록
 
 $screen.addEventListener('click', function(){
+    // $screen == event.target
     if($screen.classList.contains('waiting')){//대기화면
         $screen.classList.replace('waiting', 'ready');
         // $screen.classList.remove('waiting');
         // $screen.classList.add('ready');
         $screen.textContent = '초록색이 되면 클릭하세요';
-
-        timeoutId = setTimeout(function(){
+        timeoutId = setTimeout(function(){ // 시간측정시작은 waiting에서 한다 ready 아님!
             startTime = new Date();
             $screen.classList.replace('ready','now');
             // $screen.classList.remove('ready');
@@ -30,7 +30,7 @@ $screen.addEventListener('click', function(){
     }
     else if($screen.classList.contains('now')){//클릭화면
         endTime = new Date();
-        const current = endTime - startTime;
+        const current = endTime - startTime; // 시간계산 미래의시간 - 과거의 시간
         records.push(current);
 
         const average = records.reduce((a,c)=>a+c) / records.length; // 모든 값의 합을 구할 때 reduce 매서드 사용
