@@ -18,17 +18,17 @@ const checkWinner = (target) => {
 let hasWinner = false;
 // 가로줄 검사
 if(
-    rows[rowIndex[0]].textContent === turn &&
-    rows[rowIndex[1]].textContent === turn &&
-    rows[rowIndex[2]].textContent === turn
+    rows[rowIndex][0].textContent === turn &&
+    rows[rowIndex][1].textContent === turn &&
+    rows[rowIndex][2].textContent === turn
 ){
     hasWinner = true;
 }
 // 세로줄 검사
 if(
-    rows[cellIndex[0]].textContent === turn &&
-    rows[cellIndex[1]].textContent === turn &&
-    rows[cellIndex[2]].textContent === turn
+    rows[0][cellIndex].textContent === turn &&
+    rows[1][cellIndex].textContent === turn &&
+    rows[2][cellIndex].textContent === turn
 ){
     hasWinner = true;
 }
