@@ -11,9 +11,9 @@ const checkWinner = (target) => {
             if(cell === target){
                 rowIndex = ri;
                 cellIndex = ci;
-            }
-        });
-    });
+            };
+        })
+    })
 // 세 칸 다 채워졌다면,
 let hasWinner = false;
 // 가로줄 검사
@@ -46,26 +46,35 @@ if(
     rows[2][0].textContent === turn
 ){
     hasWinner = true;
- };
+ }
  return hasWinner;
-}
+};
 
 const callback = (event) =>{
     if(event.target.textContent !==''){ // 칸이 이미 채워져 있으면,
         console.log('빈칸이 아닙니다.');
+        return;
     }
-    else{ // 빈칸이면,
-        console.log('빈칸입니다.');
-        event.target.textContent = turn;
-        turn = turn == 'X' ? 'O' : 'X'; // callback 함수 마지막에서 turn이 O이면 X, X면 O로 바꾼다.
-        //조건부연산자 대신 if문 사용가능
-        // if(turn === 'X'){
-        // turn = 'O';
-        // } else{
-        // turn = 'X';
-        // }
+     // 빈칸이면,
+    console.log('빈칸입니다.');
+    event.target.textContent = turn;
+    const hasWinner = checkWinner(event.target);
+    // 승자가 있으면,
+    if(hasWinner){
+        $result.textContent = `${turn}님이 승리!`;
+        $table.removeEventListener('click', callback);
+        return;
     }
-}
+    // 승자가 없으면,
+    turn = turn == 'X' ? 'O' : 'X'; // callback 함수 마지막에서 turn이 O이면 X, X면 O로 바꾼다.
+    //조건부연산자 대신 if문 사용가능
+    // if(turn === 'X'){
+    // turn = 'O';
+    // } else{
+    // turn = 'X';
+    // }
+};
+
 for(let i=1;i<=3;i++){
     const $tr = document.createElement('tr'); // tr:표의 가로줄
     const cells =[];
