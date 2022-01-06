@@ -1,4 +1,15 @@
 const {body} = document;
+// const body = document.body;와 같은 의미
+// 구조분해할당 destructuring assignment 라고 한다.
+// 객체 안의 속성이름과 변수이름이 같을 때 줄여서 사용 가능
+// 배열에서 특정 인덱스를 가져올 때,
+// const arr = [1,2,3,4,5]
+// const one = arr[0];
+// const two = arr[1];
+// ...
+// // const five = arr[4];
+// const [one,two,three,four,five] = arr 로 줄여 쓸 수 있다.
+
 const $table = document.createElement('table');
 const $result = document.createElement('div'); // 결과창
 const rows =[];
