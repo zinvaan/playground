@@ -77,8 +77,10 @@ const callback = (event) =>{
         return;
     }
     // 승자가 없으면,
-    turn = turn == 'X' ? 'O' : 'X'; // callback 함수 마지막에서 turn이 O이면 X, X면 O로 바꾼다.
-    //조건부연산자 대신 if문 사용가능
+    turn = turn === 'X' ? 'O' : 'X'; // callback 함수 마지막에서 turn이 O이면 X, X면 O로 바꾼다.
+    // 우선순위 ===, 삼항연산자, = 순
+    // turn = (turn === 'X') ? 'O' : 'X' 소괄호를 활용하면 명확해진다.
+    // 조건부연산자 대신 if문 사용가능
     // if(turn === 'X'){
     // turn = 'O';
     // } else{
@@ -97,7 +99,7 @@ for(let i=1;i<=3;i++){
     }
     rows.push(cells);
     $table.appendChild($tr);
-    $table.addEventListener('click', callback); // $td 이벤트리스너 제거, $table 이벤트리스너 추가
+    $table.addEventListener('click', callback); // Event bubbling : 이벤트는 table에 달았는데 클릭을 하면 td에도 영향을 미친다.
 }
 body.appendChild($table);
 body.appendChild($result);
