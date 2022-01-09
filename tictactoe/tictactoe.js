@@ -85,18 +85,18 @@ const callback = (event) =>{
         return;
     }
     // 무승부일경우
-    let count = 0;
-    rows.forEach((row) => {
-        row.forEach((cell) =>{
-            if(cell.textContent){ // 칸에 O나 X가 있는지 판단
-                count += 1; // 있으면 count +1
-            }
-        })
-    });
-    if (count === 9){ // 9칸 다 차있다면 합계가 9가 되므로,
-        $result.textContent = `무승부`;
-        return;
-    }
+   let draw = true;
+   rows.forEach((row) => {
+       row.forEach((cell) => {
+           if(!cell.textContent){ // 한 칸이라도 비어있으면 무승부 아님
+               draw = false;
+           }
+       });
+   });
+   if (draw) {
+       $result.textContent = `무승부`;
+       return;
+   }
    
     turn = turn === 'X' ? 'O' : 'X'; // callback 함수 마지막에서 turn이 O이면 X, X면 O로 바꾼다.
     // 우선순위 ===, 삼항연산자, = 순
