@@ -14,10 +14,18 @@ const $table = document.createElement('table');
 const $result = document.createElement('div'); // 결과창
 const rows =[];
 let turn = 'O';
+
+// rows= []는,
+//[
+//  [td, td, td],
+//  [td, td, td],
+//  [td, td, td],
+//]
+// target은 td들 중 하나
 const checkWinner = (target) => {
     let rowIndex;
     let cellIndex;
-    rows.forEach((row,ri)=>{
+    rows.forEach((row,ri)=>{ // 이중 반복문으로 몇 번 째 줄 몇 번째 칸인지 판단
         row.forEach((cell,ci)=>{
             if(cell === target){
                 rowIndex = ri;
