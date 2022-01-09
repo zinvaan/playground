@@ -78,13 +78,26 @@ const callback = (event) =>{
     console.log('빈칸입니다.');
     event.target.textContent = turn;
     const hasWinner = checkWinner(event.target);
-    // 승자가 있으면,
+    // 승부 판단하기
     if(hasWinner){
         $result.textContent = `${turn}님이 승리!`;
         $table.removeEventListener('click', callback);
         return;
     }
-    // 승자가 없으면,
+    // 무승부일경우
+    let count = 0;
+    rows.forEach((row) => {
+        row.forEach((cell) =>{
+            if(cell.textContent){ // 칸에 O나 X가 있는지 판단
+                count += 1; // 있으면 count +1
+            }
+        })
+    });
+    if (count === 9){ // 9칸 다 차있다면 합계가 9가 되므로,
+        $result.textContent = `무승부`;
+        return;
+    }
+   
     turn = turn === 'X' ? 'O' : 'X'; // callback 함수 마지막에서 turn이 O이면 X, X면 O로 바꾼다.
     // 우선순위 ===, 삼항연산자, = 순
     // turn = (turn === 'X') ? 'O' : 'X' 소괄호를 활용하면 명확해진다.
