@@ -23,16 +23,9 @@ let turn = 'O';
 //]
 // target은 td들 중 하나
 const checkWinner = (target) => {
-    let rowIndex;
-    let cellIndex;
-    rows.forEach((row,ri)=>{ // 이중 반복문으로 몇 번 째 줄 몇 번째 칸인지 판단
-        row.forEach((cell,ci)=>{
-            if(cell === target){
-                rowIndex = ri;
-                cellIndex = ci;
-            };
-        })
-    })
+    const rowIndex = target.parentNode.rowIndex;
+    const cellIndex = target.cellIndex;
+
 // 세 칸 다 채워졌다면,
 let hasWinner = false;
 // 가로줄 검사
