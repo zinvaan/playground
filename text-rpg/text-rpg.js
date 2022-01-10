@@ -17,6 +17,14 @@ const hero = { // 영웅 초기 스탯
     hp: 100,
     xp: 0,
     att: 10,
+    attack(monster){ // attack: function(monster)를 객체리터럴 안에서 : funtion 생략가능
+        monster.hp -= this.att;
+        this.hp -= monster.att;
+    },
+    heal(monster){
+        this.hp += 20;
+        this.hp -= monster.att;
+    },
 };
 
 let monster = null;
@@ -60,9 +68,14 @@ $gameMenu.addEventListener('submit', (event)=>{
     }
 })
 $battleMenu.addEventListener('submit', (event)=>{
+    event.preventDefault();
     const input = event.target['battle-input'].value;
     if(input === '1'){ // 공격
-
+        hero.attack(monster);
+        monster.attack(hero);
+        $heroHp.textContent = `HP: ${hero.hp}/${hero.maxHp}`;
+        $monsterHp.textContent = `HP: ${monster.hp}/${monster.maxHp}`;
+        $message.textContent = `${hero.att}의 데미지를 주고, ${monster.att}의 데미지를 받았다.`;
     }
     else if(input === '2'){ // 회복
 
