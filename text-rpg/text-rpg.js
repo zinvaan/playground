@@ -20,12 +20,14 @@ class Game{
             {name: '스켈레톤', hp: 50, att: 15, xp: 20},
             {name: '마왕', hp: 150, att: 35, xp: 50},
         ];
-        this.start();
+        this.start(name);
     }
-    start(){
+    start(name){
         $gameMenu.addEventListener('submit', this.onGameMenuInput);
         $battleMenu.addEventListener('submit', this.onBattleMenuInput);
         this.changeScreen('game');
+        this.hero = new Hero(this,name);
+        this.updateHeroStat();
     }
     changeScreen(screen){
         if(screen === 'start'){
@@ -69,6 +71,22 @@ class Game{
         else if(input === '3'){ // 도망
     
         }
+    }
+    updateHeroStat(){
+        const {hero} = this;
+        if(hero === null){
+            $heroName.textContent = '';
+            $heroLevel.textContent = '';
+            $heroHp.textContent = '';
+            $heroXp.textContent = '';
+            $heroAtt.textContent = '';
+            return;
+        }
+        $heroName.textContent = hero.name;
+        $heroLevel.textContent = `${hero.lev}Lev`;
+        $heroHp.textContent = `HP: ${hero.hp}/${hero.maxHp}`;
+        $heroXp.textContent = `XP: ${hero.xp}/${15*hero.lev}`;
+        $heroAtt.textContent = `ATT: ${hero.att}`;
     }
 }
 
