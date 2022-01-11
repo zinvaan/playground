@@ -27,7 +27,7 @@ class Game{
         $battleMenu.addEventListener('submit', this.onBattleMenuInput);
         this.changeScreen('game');
     }
-    changeScreen(){
+    changeScreen(screen){
         if(screen === 'start'){
             $startScreen.style.display = 'block';
             $gameMenu.style.display = 'none';
