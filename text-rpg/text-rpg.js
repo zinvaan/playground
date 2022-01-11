@@ -20,6 +20,55 @@ class Game{
             {name: '스켈레톤', hp: 50, att: 15, xp: 20},
             {name: '마왕', hp: 150, att: 35, xp: 50},
         ];
+        this.start();
+    }
+    start(){
+        $gameMenu.addEventListener('submit', this.onGameMenuInput);
+        $battleMenu.addEventListener('submit', this.onBattleMenuInput);
+        this.changeScreen('game');
+    }
+    changeScreen(){
+        if(screen === 'start'){
+            $startScreen.style.display = 'block';
+            $gameMenu.style.display = 'none';
+            $battleMenu.style.display = 'none';
+        }
+        else if (screen === 'game'){
+            $startScreen.style.display = 'none';
+            $gameMenu.style.display = 'block';
+            $battleMenu.style.display = 'none';
+        }
+        else if (screen === 'battle'){
+            $startScreen.style.display = 'none';
+            $gameMenu.style.display = 'none';
+            $battleMenu.style.display = 'block';
+        }
+    }
+    onGameMenuInput = (event) =>{
+        event.preventDefault();
+        const input = event.target['menu-input'].value;
+        if(input === '1'){ // 모험
+            this.changeScreen('battle');
+        }
+        else if(input === '2'){ // 휴식
+    
+        }
+        else if(input === '3'){ // 종료
+    
+        }
+    }
+    onBattleMenuInput = (event) =>{
+        event.preventDefault();
+        const input = event.target['battle-input'].value;
+        if(input === '1'){ // 공격
+       
+        }
+        else if(input === '2'){ // 회복
+    
+        }
+        else if(input === '3'){ // 도망
+    
+        }
     }
 }
 
@@ -57,33 +106,8 @@ class Monster{
 }
 
 let game = null;
-$startScreen.addEventListener('submit',(event)=>{
-    
-});
-$gameMenu.addEventListener('submit', (event)=>{
+$startScreen.addEventListener('submit', (event) => {
     event.preventDefault();
-    const input = event.target['menu-input'].value;
+    const name = event.target['name-input'].value;
     game = new Game(name);
-    if(input === '1'){ // 모험
-     
-    }
-    else if(input === '2'){ // 휴식
-
-    }
-    else if(input === '3'){ // 종료
-
-    }
-})
-$battleMenu.addEventListener('submit', (event)=>{
-    event.preventDefault();
-    const input = event.target['battle-input'].value;
-    if(input === '1'){ // 공격
-       
-    }
-    else if(input === '2'){ // 회복
-
-    }
-    else if(input === '3'){ // 도망
-
-    }
-})
+});
