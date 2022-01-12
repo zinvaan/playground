@@ -74,7 +74,12 @@ class Game{
         event.preventDefault();
         const input = event.target['battle-input'].value;
         if(input === '1'){ // 공격
-
+            const {hero, monster} = this;
+            hero.attack(monster);
+            monster.attack(hero);
+            this.showMessage(`${hero.att}의 데미지를 주고, ${monster.att}의 데미지를 받았다.`);
+            this.updateHeroStat();
+            this.updateMonsterStat();
         }
         else if(input === '2'){ // 회복
     
