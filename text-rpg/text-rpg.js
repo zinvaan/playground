@@ -51,6 +51,17 @@ class Game{
         const input = event.target['menu-input'].value;
         if(input === '1'){ // 모험
             this.changeScreen('battle');
+            const randomIndex = Math.floor(Math.random() * this.monsterList.length);
+            const randomMonster = this.monsterList[randomIndex];
+            this.monster = new Monster(
+                this,
+                randomMonster.name,
+                randomMonster.hp,
+                randomMonster.att,
+                randomMonster.xp,
+            );
+            this.updateMonsterStat();
+            this.showMessage(`몬스터와 마주쳤다. ${this.monster.name}인 것 같다!`);
         }
         else if(input === '2'){ // 휴식
     
@@ -63,7 +74,7 @@ class Game{
         event.preventDefault();
         const input = event.target['battle-input'].value;
         if(input === '1'){ // 공격
-       
+
         }
         else if(input === '2'){ // 회복
     
@@ -87,6 +98,21 @@ class Game{
         $heroHp.textContent = `HP: ${hero.hp}/${hero.maxHp}`;
         $heroXp.textContent = `XP: ${hero.xp}/${15*hero.lev}`;
         $heroAtt.textContent = `ATT: ${hero.att}`;
+    }
+    updateMonsterStat(){
+        const {monster} = this;
+        if(monster === null){
+            $monsterName.textContent = '';
+            $monsterHp.textContent = '';
+            $monsterAtt.textContent = '';
+            return;
+        }
+        $monsterName.textContent = monster.name;
+        $monsterHp.textContent = `HP: ${monster.hp}/${monster.maxHp}`;;
+        $monsterAtt.textContent = `ATT: ${monster.att}`;
+    }
+    showMessage(text){
+        $message.textContent = text;
     }
 }
 
