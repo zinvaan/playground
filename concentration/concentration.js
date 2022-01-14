@@ -63,7 +63,6 @@ function startGame(){
             card.classList.add('flipped')
         }, 1000 + 100 * index);
     });
-
     setTimeout(() => { // 카드 감추기
         document.querySelectorAll('.card').forEach((card) =>{
             card.classList.remove('flipped');
