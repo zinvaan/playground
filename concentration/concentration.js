@@ -43,12 +43,18 @@ function onClickCard(){
         completed.push(clicked[0]);
         completed.push(clicked[1]);
         clicked = []; // 뒤집은 카드 배열 비우기
+        if(completed.length !== total){
+            return;
+        }
+        alert('축하합니다!');
         return;
     }
     // 두 카드가 다르면,
-    clicked[0].classList.remove('flipped');
-    clicked[1].classList.remove('flipped');
-    clicked = []; // 뒤집은 카드 배열 비우기
+    setTimeout(() => {
+        clicked[0].classList.remove('flipped');
+        clicked[1].classList.remove('flipped');
+        clicked = []; // 뒤집은 카드 배열 비우기
+    }, 900);
 }
 
 function startGame(){
@@ -63,6 +69,7 @@ function startGame(){
             card.classList.add('flipped')
         }, 1000 + 100 * index);
     });
+
     setTimeout(() => { // 카드 감추기
         document.querySelectorAll('.card').forEach((card) =>{
             card.classList.remove('flipped');
