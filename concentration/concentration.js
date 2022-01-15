@@ -79,4 +79,13 @@ function startGame(){
         });
     }, 5000);
 }
+
+function resetGame(){
+    $wrapper.innerHTML = '';
+    colorCopy = colors.concat(colors);
+    shuffled = [];
+    completed = [];
+    startGame();
+}
+
 startGame();
