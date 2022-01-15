@@ -46,7 +46,10 @@ function onClickCard(){
         if(completed.length !== total){
             return;
         }
-        alert('축하합니다!');
+        setTimeout(() => {
+            alert('축하합니다!');
+            resetGame(); // 게임 리셋
+        }, 600);
         return;
     }
     // 두 카드가 다르면,
