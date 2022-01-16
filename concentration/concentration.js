@@ -43,24 +43,13 @@ function onClickCard(){
     // 클릭한 카드의 개수가 두 개 일 때
     const firstBackColor = clicked[0].querySelector('.card-back').style.backgroundColor;
     const seconedBackColor = clicked[1].querySelector('.card-back').style.backgroundColor;
-    if(firstBackColor === seconedBackColor){ // 두 카드가 같으면,
-        completed.push(clicked[0]);
-        completed.push(clicked[1]);
-        clicked = []; // 뒤집은 카드 배열 비우기
-        if(completed.length !== total){
-            return;
-        }
-        setTimeout(() => {
-            alert('축하합니다!');
-            resetGame(); // 게임 리셋
-        }, 600);
-        return;
-    }
+    clickable = false;
     // 두 카드가 다르면,
     setTimeout(() => {
         clicked[0].classList.remove('flipped');
         clicked[1].classList.remove('flipped');
         clicked = []; // 뒤집은 카드 배열 비우기
+        clickable = true;
     }, 900);
 }
 
