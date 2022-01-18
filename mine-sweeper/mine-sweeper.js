@@ -38,7 +38,43 @@ function plantMine(){
     }
     return data;
 }
-
+function onRightClick(event){
+    event.preventDefault();
+    const target = event.target;
+    const rowIndex = target.parentNode.rowIndex;
+    const cellIndex = target.cellIndex;
+    const cellData = data[rowIndex][cellIndex];
+    if(cellData === CODE.MINE){ // 지뢰면,
+        data[rowIndex][cellIndex] = CODE.QUESTION_MINE; // 물음표 지뢰로
+        target.className = 'question';
+        target.textContent = '?';
+    }
+    else if(cellData === CODE.QUESTION_MINE){ // 물음표 지뢰면,
+        data[rowIndex][cellIndex] = CODE.FLAG_MIND; // 깃발 지뢰로
+        target.className = 'flag';
+        target.textContent = '!';
+    }
+    else if(cellData === CODE.FLAG_MIND){ // 깃발 지뢰면,
+        data[rowIndex][cellIndex] = CODE.MINE; // 지뢰로
+        target.className = '';
+        target.textContent = 'X';
+    }
+    else if(cellData === CODE.NORMAL){ // 닫힌 칸이면,
+        data[rowIndex][cellIndex] = CODE.QUESTION; // 물음표로
+        target.className = 'question';
+        target.textContent = '?';
+    }
+    else if(cellData === CODE.QUESTION){ // 물음표면,
+        data[rowIndex][cellIndex] = CODE.FLAG; // 깃발로
+        target.className = 'flag';
+        target.textContent = '!';
+    }
+    else if(cellData === CODE.FLAG){ // 깃발이면
+        data[rowIndex][cellIndex] = CODE.NORMAL; // 닫힌 칸으로
+        target.className = '';
+        target.textContent = '';
+    }
+}
 function drawTable(){
     data = plantMine();
     data.forEach((row) => {
@@ -51,6 +87,7 @@ function drawTable(){
             $tr.append($td);
         });
         $tbody.append($tr);
+        $tbody.addEventListener('contextmenu', onRightClick);
     })
 }
 drawTable();
