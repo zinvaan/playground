@@ -75,6 +75,33 @@ function onRightClick(event){
         target.textContent = '';
     }
 }
+function countMine(rowIndex, cellIndex){
+    const mines = [CODE.MINE, CODE.QUESTION_MINE, CODE.FLAG_MIND]; // -6,-4,-5
+    let i = 0;
+    mines.includes(data[rowIndex-1]?.[cellIndex-1]) && i++;
+    mines.includes(data[rowIndex-1]?.[cellIndex]) && i++;
+    mines.includes(data[rowIndex-1]?.[cellIndex+1]) && i++;
+    mines.includes(data[rowIndex][cellIndex-1]) && i++;
+    mines.includes(data[rowIndex][cellIndex+1]) && i++;
+    mines.includes(data[rowIndex+1]?.[cellIndex-1]) && i++;
+    mines.includes(data[rowIndex+1]?.[cellIndex]) && i++;
+    mines.includes(data[rowIndex+1]?.[cellIndex+1]) && i++;
+    return i;
+}
+function onLeftClick(event){
+    const target = event.target; // td 태그
+    const rowIndex = target.parentNode.rowIndex;
+    const cellIndex = target.cellIndex;
+    const cellData = data[rowIndex][cellIndex];
+    if(cellData === CODE.NORMAL){ // 닫힌 칸이면,
+        const count = countMine(rowIndex, cellIndex);
+        target.textContent = count || '';
+        target.className = 'opened';
+        data[rowIndex][cellIndex] = count;
+    }
+    else if(cellData === CODE.MINE){ // 지뢰 칸이면,
+    } // 나머지는 무시
+}
 function drawTable(){
     data = plantMine();
     data.forEach((row) => {
@@ -88,6 +115,7 @@ function drawTable(){
         });
         $tbody.append($tr);
         $tbody.addEventListener('contextmenu', onRightClick);
+        $tbody.addEventListener('click', onLeftClick);
     })
 }
 drawTable();
