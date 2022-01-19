@@ -100,6 +100,11 @@ function onLeftClick(event){
         data[rowIndex][cellIndex] = count;
     }
     else if(cellData === CODE.MINE){ // 지뢰 칸이면,
+        target.textContent = '펑';
+        target.className = 'opened';
+        // 지뢰 클릭 이후 더 이상 클릭 안되도록 removeEventListener 해준다.
+        $tbody.removeEventListener('contextmenu', onRightClick);
+        $tbody.removeEventListener('click', onLeftClick);
     } // 나머지는 무시
 }
 function drawTable(){
