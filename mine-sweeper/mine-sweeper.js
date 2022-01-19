@@ -88,16 +88,37 @@ function countMine(rowIndex, cellIndex){
     mines.includes(data[rowIndex+1]?.[cellIndex+1]) && i++;
     return i;
 }
+function open(rowIndex, cellIndex){
+    const target = $tbody.children[rowIndex]?.children[cellIndex];
+    if(!target){
+        return;
+    }
+    const count = countMine(rowIndex, cellIndex);
+    target.textContent = count || '';
+    target.className = 'opened';
+    data[rowIndex][cellIndex] = count;
+    return count;
+}
+function openAround(rI, cI){
+    const count = open(rI, cI);
+    if(count === 0){
+        open(rI-1, cI-1);
+        open(rI-1, cI);
+        open(rI-1, cI+1);
+        open(rI, cI-1);
+        open(rI, cI+1);
+        open(rI+1, cI-1);
+        open(rI+1, cI);
+        open(rI+1, cI+1);
+    }
+}
 function onLeftClick(event){
     const target = event.target; // td 태그
     const rowIndex = target.parentNode.rowIndex;
     const cellIndex = target.cellIndex;
     const cellData = data[rowIndex][cellIndex];
     if(cellData === CODE.NORMAL){ // 닫힌 칸이면,
-        const count = countMine(rowIndex, cellIndex);
-        target.textContent = count || '';
-        target.className = 'opened';
-        data[rowIndex][cellIndex] = count;
+        openAround(rowIndex, cellIndex);
     }
     else if(cellData === CODE.MINE){ // 지뢰 칸이면,
         target.textContent = '펑';
