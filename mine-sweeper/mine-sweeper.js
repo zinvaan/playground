@@ -102,14 +102,14 @@ function open(rowIndex, cellIndex){
 function openAround(rI, cI){
     const count = open(rI, cI);
     if(count === 0){
-        open(rI-1, cI-1);
-        open(rI-1, cI);
-        open(rI-1, cI+1);
-        open(rI, cI-1);
-        open(rI, cI+1);
-        open(rI+1, cI-1);
-        open(rI+1, cI);
-        open(rI+1, cI+1);
+        openAround(rI-1, cI-1);
+        openAround(rI-1, cI);
+        openAround(rI-1, cI+1);
+        openAround(rI, cI-1);
+        openAround(rI, cI+1);
+        openAround(rI+1, cI-1);
+        openAround(rI+1, cI);
+        openAround(rI+1, cI+1);
     }
 }
 function onLeftClick(event){
