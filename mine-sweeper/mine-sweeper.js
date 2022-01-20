@@ -100,17 +100,19 @@ function open(rowIndex, cellIndex){
     return count;
 }
 function openAround(rI, cI){
-    const count = open(rI, cI);
-    if(count === 0){
-        openAround(rI-1, cI-1);
-        openAround(rI-1, cI);
-        openAround(rI-1, cI+1);
-        openAround(rI, cI-1);
-        openAround(rI, cI+1);
-        openAround(rI+1, cI-1);
-        openAround(rI+1, cI);
-        openAround(rI+1, cI+1);
+    setTimeout(() => {
+        const count = open(rI, cI);
+        if(count === 0){
+            openAround(rI-1, cI-1);
+            openAround(rI-1, cI);
+            openAround(rI-1, cI+1);
+            openAround(rI, cI-1);
+            openAround(rI, cI+1);
+            openAround(rI+1, cI-1);
+            openAround(rI+1, cI);
+            openAround(rI+1, cI+1);
     }
+    },0);
 }
 function onLeftClick(event){
     const target = event.target; // td 태그
