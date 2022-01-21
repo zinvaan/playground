@@ -1,5 +1,6 @@
 const $tbody = document.querySelector('#table tbody');
 const $result = document.querySelector('#result');
+const $timer = document.querySelector('#timer');
 const row = 10; // 줄
 const cell = 10; // 칸
 const mine = 10; // 지뢰
@@ -14,7 +15,11 @@ const CODE = {
 }
 let data;
 let openCount = 0;
-
+let startTime = new Date(); // 시작하자마자 시간 측정
+const interval = setInterval(() => {
+    const time = Math.floor((new Date() - startTime) / 1000);
+    $timer.textContent = `${time}초`;
+}, 1000);
 function plantMine(){
     const candidate = Array(row * cell).fill().map((arr, i) => {
         return i;
@@ -102,10 +107,12 @@ function open(rowIndex, cellIndex){
     openCount++;
     console.log(openCount);
     if(openCount === row*cell-mine){ // 90칸을 열었으면, (10칸은 지뢰 갯수)
+        const time = (new Date() - startTime) / 1000;
+        clearInterval(interval); // 모든 칸을 열면 타이머 멈춤
         $tbody.removeEventListener('contextmenu', onRightClick);
         $tbody.removeEventListener('click', onLeftClick);
         setTimeout(() => {
-            alert(`승리했습니다!`);
+            alert(`승리했습니다! ${time}초가 걸렸습니다.`);
         },0);
     }
     return count;
@@ -136,6 +143,7 @@ function onLeftClick(event){
     else if(cellData === CODE.MINE){ // 지뢰 칸이면,
         target.textContent = '펑';
         target.className = 'opened';
+        clearInterval(interval); // 지뢰 클릭시 타이머 멈춤
         // 지뢰 클릭 이후 더 이상 클릭 안되도록 removeEventListener 해준다.
         $tbody.removeEventListener('contextmenu', onRightClick);
         $tbody.removeEventListener('click', onLeftClick);
