@@ -10,7 +10,7 @@ const CODE = {
     QUESTION_MINE: -4,
     FLAG_MIND: -5,
     MINE: -6,
-    OPEND: 0, // 0 이상이면 모두 열린 칸
+    OPENED: 0, // 0 이상이면 모두 열린 칸
 }
 let data;
 
@@ -89,6 +89,7 @@ function countMine(rowIndex, cellIndex){
     return i;
 }
 function open(rowIndex, cellIndex){
+    if(data[rowIndex]?.[cellIndex] >= CODE.OPENED) return;
     const target = $tbody.children[rowIndex]?.children[cellIndex];
     if(!target){
         return;
