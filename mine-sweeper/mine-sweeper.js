@@ -13,6 +13,7 @@ const CODE = {
     OPENED: 0, // 0 이상이면 모두 열린 칸
 }
 let data;
+let openCount = 0;
 
 function plantMine(){
     const candidate = Array(row * cell).fill().map((arr, i) => {
@@ -98,6 +99,15 @@ function open(rowIndex, cellIndex){
     target.textContent = count || '';
     target.className = 'opened';
     data[rowIndex][cellIndex] = count;
+    openCount++;
+    console.log(openCount);
+    if(openCount === row*cell-mine){ // 90칸을 열었으면, (10칸은 지뢰 갯수)
+        $tbody.removeEventListener('contextmenu', onRightClick);
+        $tbody.removeEventListener('click', onLeftClick);
+        setTimeout(() => {
+            alert(`승리했습니다!`);
+        },0);
+    }
     return count;
 }
 function openAround(rI, cI){
