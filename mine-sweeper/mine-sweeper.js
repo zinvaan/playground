@@ -1,9 +1,10 @@
 const $tbody = document.querySelector('#table tbody');
 const $result = document.querySelector('#result');
 const $timer = document.querySelector('#timer');
-const row = 10; // 줄
-const cell = 10; // 칸
-const mine = 10; // 지뢰
+const $form = document.querySelector('#form');
+let row; // 줄
+let cell; // 칸
+let mine; // 지뢰
 const CODE = {
     NORMAL: -1,
     QUESTION: -2,
@@ -15,11 +16,24 @@ const CODE = {
 }
 let data;
 let openCount = 0;
-let startTime = new Date(); // 시작하자마자 시간 측정
-const interval = setInterval(() => {
-    const time = Math.floor((new Date() - startTime) / 1000);
-    $timer.textContent = `${time}초`;
-}, 1000);
+let startTime;
+let interval;
+
+function onSubmit(event){
+    event.preventDefault();
+    row = parseInt(event.target.row.value);
+    cell = parseInt(event.target.cell.value);
+    mine = parseInt(event.target.mine.value);
+    drawTable();
+    // 줄,칸,지뢰 선택하고 나서 시간 재기
+    startTime = new Date();
+    interval = setInterval(() => {
+        const time = Math.floor((new Date() - startTime) / 1000);
+        $timer.textContent = `${time}초`;
+    }, 1000);
+}
+$form.addEventListener('submit', onSubmit);
+
 function plantMine(){
     const candidate = Array(row * cell).fill().map((arr, i) => {
         return i;
@@ -63,7 +77,7 @@ function onRightClick(event){
     else if(cellData === CODE.FLAG_MIND){ // 깃발 지뢰면,
         data[rowIndex][cellIndex] = CODE.MINE; // 지뢰로
         target.className = '';
-        target.textContent = 'X';
+        target.textContent = '';
     }
     else if(cellData === CODE.NORMAL){ // 닫힌 칸이면,
         data[rowIndex][cellIndex] = CODE.QUESTION; // 물음표로
@@ -113,7 +127,7 @@ function open(rowIndex, cellIndex){
         $tbody.removeEventListener('click', onLeftClick);
         setTimeout(() => {
             alert(`승리했습니다! ${time}초가 걸렸습니다.`);
-        },0);
+        },100);
     }
     return count;
 }
@@ -156,7 +170,7 @@ function drawTable(){
         row.forEach((cell) => {
             const $td = document.createElement('td');
             if(cell === CODE.MINE){
-                $td.textContent = 'X';
+                $td.textContent = '';
             }
             $tr.append($td);
         });
@@ -165,4 +179,3 @@ function drawTable(){
         $tbody.addEventListener('click', onLeftClick);
     })
 }
-drawTable();
