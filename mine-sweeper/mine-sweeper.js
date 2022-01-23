@@ -24,6 +24,7 @@ function onSubmit(event){
     row = parseInt(event.target.row.value);
     cell = parseInt(event.target.cell.value);
     mine = parseInt(event.target.mine.value);
+    $tbody.innerHTML = '';
     drawTable();
     // 줄,칸,지뢰 선택하고 나서 시간 재기
     startTime = new Date();
