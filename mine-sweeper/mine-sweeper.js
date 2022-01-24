@@ -18,12 +18,14 @@ let data;
 let openCount = 0;
 let startTime;
 let interval;
+const dev = false; // 개발자모드용 flag변수 사용
 
 function onSubmit(event){
     event.preventDefault();
     row = parseInt(event.target.row.value);
     cell = parseInt(event.target.cell.value);
     mine = parseInt(event.target.mine.value);
+    clearInterval(interval);
     $tbody.innerHTML = '';
     drawTable();
     // 줄,칸,지뢰 선택하고 나서 시간 재기
@@ -171,7 +173,7 @@ function drawTable(){
         row.forEach((cell) => {
             const $td = document.createElement('td');
             if(cell === CODE.MINE){
-                $td.textContent = '';
+              dev && ($td.textContent = 'X'); // dev가 true이면 뒤 코드 실행
             }
             $tr.append($td);
         });
