@@ -18,7 +18,7 @@ function startGame(){ // 4*4 표 그리기
     $table.appendChild($fragment);
     put2ToRandomCell();
     draw();
-}
+};
 
 function put2ToRandomCell(){ // 무작위로 숫자 2 넣기
     const emptyCells = [];
@@ -31,7 +31,7 @@ function put2ToRandomCell(){ // 무작위로 숫자 2 넣기
     });
     const randomCell = emptyCells[Math.floor(Math.random()*emptyCells.length)];
     data[randomCell[0]][randomCell[1]] = 2;
-}
+};
 
 function draw(){ // 16칸 그리고, 텍스트와 클래스 부여
     data.forEach((rowData, i) => {
@@ -47,6 +47,25 @@ function draw(){ // 16칸 그리고, 텍스트와 클래스 부여
             }
         });
     });
-}
+};
 
 startGame();
+
+function moveCells(direction){
+
+};
+
+window.addEventListener('keyup', (event) => {
+    if(event.key === 'ArrowUp'){
+        moveCells('up');
+    }
+    else if(event.key === 'ArrowDown'){
+        moveCells('down');
+    }
+    else if(event.key === 'ArrowLeft'){
+        moveCells('left');
+    }
+    else if(event.key === 'ArrowRight'){
+        moveCells('right');
+    }
+});
