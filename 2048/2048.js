@@ -1,6 +1,6 @@
 const $table = document.getElementById('table');
 const $score = document.getElementById('score');
-let data = [];
+let data = []
 
 function startGame(){ // 4*4 표 그리기
     const $fragment = document.createDocumentFragment();
@@ -51,8 +51,40 @@ function draw(){ // 16칸 그리고, 텍스트와 클래스 부여
 
 startGame();
 
-function moveCells(direction){
+data = [
+    [0,2,4,2],
+    [0,0,8,0],
+    [2,2,2,2],
+    [0,16,0,4],
+];
+draw();
 
+function moveCells(direction){
+    switch(direction){
+        case 'left':
+            const newData = [[],[],[],[]];
+            data.forEach((rowData, i) => {
+                rowData.forEach((cellData, j) => {
+                    if(cellData){
+                        newData[i].push(cellData);
+                    };
+                });
+            });
+            console.log(newData);
+            [1,2,3,4].forEach((rowData, i) => {
+                [1,2,3,4].forEach((cellData, j) => {
+                    data[i][j] = newData[i][j] || 0;
+                });
+            });
+            break;
+        case 'right':
+            break;
+        case 'up':
+            break;
+        case 'down':
+            break;
+    }
+    draw();
 };
 
 window.addEventListener('keyup', (event) => {
