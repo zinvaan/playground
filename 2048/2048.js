@@ -54,29 +54,37 @@ startGame();
 data = [
     [0,2,4,2],
     [0,0,8,0],
-    [2,2,2,2],
+    [2,2,4,8],
     [0,16,0,4],
 ];
 draw();
 
 function moveCells(direction){
     switch(direction){
-        case 'left':
+        case 'left': {
             const newData = [[],[],[],[]];
             data.forEach((rowData, i) => {
                 rowData.forEach((cellData, j) => {
                     if(cellData){
-                        newData[i].push(cellData);
+                        const currentRow = newData[i];
+                        const prevData = currentRow[currentRow.length-1];
+                        if(prevData === cellData){ // 이전 값과 지금 값이 같으면,
+                            currentRow[currentRow.length-1] *= -2;
+                        }
+                        else{
+                            newData[i].push(cellData);
+                        }
                     };
                 });
             });
             console.log(newData);
             [1,2,3,4].forEach((rowData, i) => {
                 [1,2,3,4].forEach((cellData, j) => {
-                    data[i][j] = newData[i][j] || 0;
+                    data[i][j] = Math.abs(newData[i][j]) || 0;
                 });
             });
             break;
+        }
         case 'right':
             break;
         case 'up':
