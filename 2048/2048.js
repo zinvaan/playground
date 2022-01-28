@@ -109,8 +109,30 @@ function moveCells(direction){
             });
             break;
         };
-        case 'up':
+        case 'up':{ // 행과 열 바뀜, i와j 반대로!
+            const newData = [[],[],[],[]];
+            data.forEach((rowData, i) => {
+                rowData.forEach((cellData, j) => {
+                    if(cellData){
+                        const currentRow = newData[j];
+                        const prevData = currentRow[currentRow.length-1];
+                        if(prevData === cellData){
+                            currentRow[currentRow.length-1] *= -2;
+                        }
+                        else{
+                            newData[j].push(cellData);
+                        }
+                    };
+                });
+            });
+            console.log(newData);
+            [1,2,3,4].forEach((rowData, i) => {
+                [1,2,3,4].forEach((cellData, j) => {
+                    data[j][i] = Math.abs(newData[i][j]) || 0;
+                });
+            });
             break;
+        };
         case 'down':
             break;
     }
