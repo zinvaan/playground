@@ -50,15 +50,13 @@ function draw(){ // 16칸 그리고, 텍스트와 클래스 부여
 };
 
 startGame();
-
 data = [
-    [0,2,4,2],
-    [0,0,8,0],
-    [2,2,4,8],
-    [0,16,0,4],
+    [32,2,4,2],
+    [64,4,8,4],
+    [2,1024,1024,32],
+    [32,16,64,4],
 ];
 draw();
-
 function moveCells(direction){
     switch(direction){
         case 'left': {
@@ -158,7 +156,20 @@ function moveCells(direction){
             break;
         };
     }
-    draw();
+    if(data.flat().includes(2048)){ // 승리
+        draw();
+        setTimeout(() => {
+            alert('축하합니다. 2048을 만들었습니다!');
+        },0);
+    }
+    else if(!data.flat().includes(0)){ // 빈칸이 없으면 패배
+        alert('패배했습니다...');
+    }
+    else{
+        put2ToRandomCell();
+        draw();
+    }
+
 };
 
 window.addEventListener('keyup', (event) => {
