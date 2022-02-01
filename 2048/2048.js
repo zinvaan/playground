@@ -50,13 +50,7 @@ function draw(){ // 16칸 그리고, 텍스트와 클래스 부여
 };
 
 startGame();
-data = [
-    [32,2,4,2],
-    [64,4,8,4],
-    [2,1024,1024,32],
-    [32,16,64,4],
-];
-draw();
+
 function moveCells(direction){
     switch(direction){
         case 'left': {
@@ -67,6 +61,8 @@ function moveCells(direction){
                         const currentRow = newData[i];
                         const prevData = currentRow[currentRow.length-1];
                         if(prevData === cellData){ // 이전 값과 지금 값이 같으면,
+                            const score = parseInt($score.textContent);
+                            $score.textContent = score + currentRow[currentRow.length - 1]*2;
                             currentRow[currentRow.length-1] *= -2;
                         }
                         else{
@@ -91,6 +87,8 @@ function moveCells(direction){
                         const currentRow = newData[i];
                         const prevData = currentRow[currentRow.length-1];
                         if(prevData === rowData[3-j]){
+                            const score = parseInt($score.textContent);
+                            $score.textContent = score + currentRow[currentRow.length - 1]*2;
                             currentRow[currentRow.length-1] *= -2;
                         }
                         else{
@@ -115,6 +113,8 @@ function moveCells(direction){
                         const currentRow = newData[j];
                         const prevData = currentRow[currentRow.length-1];
                         if(prevData === cellData){
+                            const score = parseInt($score.textContent);
+                            $score.textContent = score + currentRow[currentRow.length - 1]*2;
                             currentRow[currentRow.length-1] *= -2;
                         }
                         else{
@@ -139,6 +139,8 @@ function moveCells(direction){
                         const currentRow = newData[j];
                         const prevData = currentRow[currentRow.length-1];
                         if(prevData === data[3-i][j]){
+                            const score = parseInt($score.textContent);
+                            $score.textContent = score + currentRow[currentRow.length - 1]*2;
                             currentRow[currentRow.length-1] *= -2;
                         }
                         else{
@@ -163,7 +165,7 @@ function moveCells(direction){
         },0);
     }
     else if(!data.flat().includes(0)){ // 빈칸이 없으면 패배
-        alert('패배했습니다...');
+        alert(`패배했습니다...${score.textContent}점`);
     }
     else{
         put2ToRandomCell();
