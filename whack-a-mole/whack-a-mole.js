@@ -16,14 +16,25 @@ $start.addEventListener('click', () => {
     tick();
 });
 
+// function tick(){
+//     holes.forEach((hole, index) => {
+//         if(hole) return; // 무언가 일어나고 있으면 return
+//         const $gopher = $$cells[index].querySelector('.gopher');
+//         holes[index] = setTimeout(() => { // 1초 뒤에 사라짐
+//             $gopher.classList.add('hidden');
+//             holes[index] = 0;
+//         }, 1000);
+//         $gopher.classList.remove('hidden');
+//     });
+// }
 function tick(){
     holes.forEach((hole, index) => {
         if(hole) return; // 무언가 일어나고 있으면 return
-        const $gopher = $$cells[index].querySelector('.gopher');
+        const $bomb = $$cells[index].querySelector('.bomb');
         holes[index] = setTimeout(() => { // 1초 뒤에 사라짐
-            $gopher.classList.add('hidden');
+            $bomb.classList.add('hidden');
             holes[index] = 0;
         }, 1000);
-        $gopher.classList.remove('hidden');
+        $bomb.classList.remove('hidden');
     });
 }
