@@ -19,16 +19,16 @@
   background-size: 200px 200px;
 }
 .dead {
-  background-size: url("/whack-a-mole/dead_gopher.png") center center no-repeat;
-  background-size: 200px;
+  background: url("/whack-a-mole/dead_gopher.png") center center no-repeat;
+  background-size: 200px 200px;
 }
 .bomb {
-  background-size: url("/whack-a-mole/bomb.png") center center no-repeat;
-  background-size: 200px;
+  background: url("/whack-a-mole/bomb.png") center center no-repeat;
+  background-size: 200px 200px;
 }
 .boom {
-  background-size: url("/whack-a-mole/explode.png") center center no-repeat;
-  background-size: 200px;
+  background: url("/whack-a-mole/explode.png") center center no-repeat;
+  background-size: 200px 200px;
 }
 .hidden {
   bottom: -200px;
