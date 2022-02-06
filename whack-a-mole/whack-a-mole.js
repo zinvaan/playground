@@ -16,25 +16,28 @@ $start.addEventListener('click', () => {
     tick();
 });
 
-// function tick(){
-//     holes.forEach((hole, index) => {
-//         if(hole) return; // 무언가 일어나고 있으면 return
-//         const $gopher = $$cells[index].querySelector('.gopher');
-//         holes[index] = setTimeout(() => { // 1초 뒤에 사라짐
-//             $gopher.classList.add('hidden');
-//             holes[index] = 0;
-//         }, 1000);
-//         $gopher.classList.remove('hidden');
-//     });
-// }
+let gopherPercent = 0.3;
+let bombPercent = 0.5; // 0.3(두더지) + 0.2(폭탄) 누적값
 function tick(){
     holes.forEach((hole, index) => {
         if(hole) return; // 무언가 일어나고 있으면 return
-        const $bomb = $$cells[index].querySelector('.bomb');
+        const randomValue = Math.random();
+        if(randomValue < gopherPercent){
+            const $gopher = $$cells[index].querySelector('.gopher');
+            holes[index] = setTimeout(() => { // 1초 뒤에 사라짐
+            $gopher.classList.add('hidden');
+            holes[index] = 0;
+            }, 1000);
+            $gopher.classList.remove('hidden');
+        }
+        else if(randomValue < bombPercent){
+            const $bomb = $$cells[index].querySelector('.bomb');
         holes[index] = setTimeout(() => { // 1초 뒤에 사라짐
             $bomb.classList.add('hidden');
             holes[index] = 0;
         }, 1000);
         $bomb.classList.remove('hidden');
+        }
+        
     });
 }
