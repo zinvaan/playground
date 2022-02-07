@@ -41,3 +41,15 @@ function tick(){
         
     });
 }
+
+$$cells.forEach(($cell, index) => {
+    $cell.querySelector('.gopher').addEventListener('click', (event) => {
+        event.target.classList.add('dead');
+        event.target.classList.add('hidden');
+        clearTimeout(holes[index]); // 기존 내려가는 타이머 제거
+        setTimeout(() => {
+            holes[index] = 0;
+            event.target.classList.remove('dead');
+        }, 1000);
+    });
+});
