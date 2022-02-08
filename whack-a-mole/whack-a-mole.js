@@ -52,4 +52,13 @@ $$cells.forEach(($cell, index) => {
             event.target.classList.remove('dead');
         }, 1000);
     });
+    $cell.querySelector('.bomb').addEventListener('click', (event) => {
+        event.target.classList.add('boom');
+        event.target.classList.add('hidden');
+        clearTimeout(holes[index]);
+        setTimeout(() => {
+            holes[index] = 0;
+            event.target.classList.remove('boom');
+        }, 1000);
+    });
 });
