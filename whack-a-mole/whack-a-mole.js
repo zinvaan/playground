@@ -44,6 +44,10 @@ function tick(){
 
 $$cells.forEach(($cell, index) => {
     $cell.querySelector('.gopher').addEventListener('click', (event) => {
+        if(!event.target.classList.contains('dead')){
+            score += 1;
+            $score.textContent = score;
+        }
         event.target.classList.add('dead');
         event.target.classList.add('hidden');
         clearTimeout(holes[index]); // 기존 내려가는 타이머 제거
