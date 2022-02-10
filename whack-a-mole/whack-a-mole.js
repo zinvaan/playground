@@ -7,13 +7,24 @@ const $$cells = document.querySelectorAll('.cell');
 const holes = [0,0,0,0,0,0,0,0,0];
 let started = false; // flag
 let score = 0;
+let time = 60;
 
 $start.addEventListener('click', () => {
     if(started) return; // 이미 시작하였으면 무시
     started = true;
     console.log('시작');
+    const timerId = setInterval(() => {
+        time = (time * 10 - 1) / 10; // 소수점 계산
+        $timer.textContent = time;
+        if(time === 0){
+            clearInterval(timerId);
+            clearInterval(tickId);
+            setTimeout(() => {
+                alert(`Game Over! Score: ${score} point`);
+            },50);
+        }
+    },100);
     const tickId = setInterval(tick, 1000);
-    tick();
 });
 
 let gopherPercent = 0.3;
