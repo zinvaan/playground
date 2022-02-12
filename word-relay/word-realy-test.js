@@ -1,4 +1,6 @@
 const number = Number(prompt('몇 명이 참가하나요?'));
+
+if(number){// prompt에서 취소를 누르면 다음 코드가 실행안되게 하기
 const $button = document.querySelector('button');
 const $input = document.querySelector('input');
 const $word = document.querySelector('#word');
@@ -33,5 +35,6 @@ const onInput = (event) => {
 };
 
 
-$button.addEventListener('click',onClickButton);
-$input.addEventListener('input',onInput);
+    $button.addEventListener('click',onClickButton);
+    $input.addEventListener('input',onInput);
+}
