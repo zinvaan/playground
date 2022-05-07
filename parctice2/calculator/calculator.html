@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>계산기</title>
+  <style>
+    *{
+      box-sizing: border-box;
+    }
+    #result{
+      width: 180px;
+      height: 50px;
+      margin: 5px;
+      text-align: right;
+    }
+    #operator{
+      width: 50px;
+      height: 50px;
+      margin: 5px;
+      text-align: center;
+    }
+    button{
+      width: 50px;
+      height: 50px;
+      margin: 5px;
+    }
+  </style>
+</head>
+<body>
+  <input readonly id="operator">
+  <input readonly type="number" id="result">
+  <div class="row">
+    <button id="num-7">7</button>
+    <button id="num-8">8</button>
+    <button id="num-9">9</button>
+    <button id="plus">+</button>
+  </div>
+  <div class="row">
+    <button id="num-4">4</button>
+    <button id="num-5">5</button>
+    <button id="num-6">6</button>
+    <button id="minus">-</button>
+  </div>
+  <div class="row">
+    <button id="num-1">1</button>
+    <button id="num-2">2</button>
+    <button id="num-3">3</button>
+    <button id="divide">/</button>
+  </div>
+  <div class="row">
+    <button id="clear">C</button>
+    <button id="num-0">0</button>
+    <button id="calculate">=</button>
+    <button id="multiply">X</button>
+  </div>
+  <script>
+    let numOne='';
+    let operator='';
+    let numTwo='';
+
+    const $operator = document.querySelector('#operaotr');
+    const $result = document.querySelector('#result');
+    
+    document.querySelector('num-0').addEventListener('click',()=>{
+      if(operator){
+      //operator 있으면,
+      numTwo += '0';
+    }
+    else{
+      //operator 없으면,
+      numOne='0';
+    }
+    $result.value += '0';
+    });
+    document.querySelector('num-1').addEventListener('click',()=>{});
+    document.querySelector('num-2').addEventListener('click',()=>{});
+    document.querySelector('num-3').addEventListener('click',()=>{});
+    document.querySelector('num-4').addEventListener('click',()=>{});
+    document.querySelector('num-5').addEventListener('click',()=>{});
+    document.querySelector('num-6').addEventListener('click',()=>{});
+    document.querySelector('num-7').addEventListener('click',()=>{});
+    document.querySelector('num-8').addEventListener('click',()=>{});
+    document.querySelector('num-9').addEventListener('click',()=>{});
+
+    document.querySelector('plus').addEventListener('click',()=>{});
+    document.querySelector('minus').addEventListener('click',()=>{});
+    document.querySelector('divide').addEventListener('click',()=>{});
+    document.querySelector('multiply').addEventListener('click',()=>{});
+    document.querySelector('calculate').addEventListener('click',()=>{});
+    document.querySelector('clear').addEventListener('click',()=>{});
+
+    
+  </script>
+</body>
+</html>
