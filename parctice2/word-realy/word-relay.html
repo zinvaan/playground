@@ -36,6 +36,8 @@
         else{
           $order.textContent = order+1;
         }
+        $input.value='';
+        $input.focus();
       }
       else{
         //제시어가 있다.
@@ -49,10 +51,15 @@
           else{
             $order.textContent = order+1;
           }
+          $input.value='';
+          $input.focus();
         }
         else{
           //올바르지 않은 단어
+          alert('올바르지 않은 단어 입니다.');
         }
+        $input.value='';
+        $input.focus();
       }
     };
     const onInput=(event)=>{
