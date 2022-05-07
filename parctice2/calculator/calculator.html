@@ -63,6 +63,17 @@
     const $operator = document.querySelector('#operaotr');
     const $result = document.querySelector('#result');
     
+    const onClickNumber=(number)=>{
+      return (event)=>{
+        if(operator){
+          numTwo += number;
+        }
+        else{
+          numOne += number;
+        }
+        $result.value += number;
+      }
+    };
     document.querySelector('num-0').addEventListener('click',()=>{
       if(operator){
       //operator 있으면,
