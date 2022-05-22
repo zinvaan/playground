@@ -34,6 +34,7 @@ export const remove = (id) => ({
   Initial State
 */
 const initialState = {
+  // 객체에 한 개 이상의 값이 들어가므로 불변성을 유지해 주어야 한다.
   input: "",
   todos: [
     { id: 1, text: "리덕스 기초 배우기", done: true },
@@ -43,29 +44,33 @@ const initialState = {
 /*
   Reducer
 */
-const todos(state = initialState, action) {
-  switch(action.type) {
+function todos(state = initialState, action) {
+  switch (action.type) {
     case CHANGE_INPUT:
       return {
-        ...state, // 리듀서에서는 상태의 불변성을 유지해야한다.
+        ...state, // 리듀서에서는 state의 불변성을 유지해야한다.
         input: action.input,
-      }
+      };
     case INSERT:
       return {
         ...state,
         todos: state.todos.concat(action.todo),
-      }
+      };
     case TOGGLE:
       return {
         ...state,
-        todos: state.todos.map((todo)=> 
-        (todo.id === action.id) ? {...todo, done: !todo.done} : todo)
-      }
+        todos: state.todos.map((todo) =>
+          todo.id === action.id ? { ...todo, done: !todo.done } : todo,
+        ),
+      };
     case REMOVE:
+      return {
+        ...state,
+        todos: state.todos.filter((todo) => todo.id !== action.id),
+      };
     default:
       return state;
-  };
-};
+  }
+}
 
 export default todos;
-
