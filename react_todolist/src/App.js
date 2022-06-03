@@ -5,9 +5,11 @@ import { BrownserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="todo-app">
-      <Home />
-    </div>
+    <BrownserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </BrownserRouter>
   );
 }
 
