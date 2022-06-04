@@ -1,32 +1,31 @@
-import './App.css';
+// import React, { useEffect } from 'react';
+import { Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
-import Login from './pages/Login';
-import Products from './pages/Products';
-import Search from './pages/Search';
-import ListPorducts from './pages/ListProducts';
-import AddProduct from './pages/AddProduct';
-import ProductDisplay from './pages/ProductDisplay';
-import { Router, Routes, Route, Link } from 'react-router-dom';
+import About from './pages/About';
+import Profile from './pages/Profile';
+import './App.css';
 
-function App() {
+const App = () => {
   return (
-    <Router>
-      <nav>
-        <Link to="/">Home</Link>
-        <Link to="/login">Login</Link>
-        <Link to="/products/search">Products</Link>
-      </nav>
+    <div>
+      <ul>
+        <li>
+          <Link to="/">홈</Link>
+        </li>
+        <li>
+          <Link to="/about">소개</Link>
+        </li>
+        <li>
+          <Link to="/about">정보</Link>
+        </li>
+      </ul>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/products/search" element={<Search />} />
-        <Route path="/products/list" element={<ListPorducts />} />
-        <Route path="/products/add" element={<AddProduct />} />
-        <Route path="/products/:id" element={<ProductDisplay />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/profile/:username" element={<Profile />} />
       </Routes>
-    </Router>
+    </div>
   );
-}
+};
 
 export default App;
