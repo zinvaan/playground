@@ -3,9 +3,11 @@ import { Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
 import About from './pages/About';
 import Profile from './pages/Profile';
+import { usePrompt } from './pages/Block';
 import './App.css';
 
 const App = () => {
+  usePrompt('현재 페이지를 벗어나시겠습니까?', true);
   return (
     <div>
       <ul>
