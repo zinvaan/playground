@@ -9,29 +9,16 @@ const Header = ({ title }) => {
     </header>
   );
 };
-const Nav = ({ topics }) => {
-  console.log("topics: ", topics);
-  const titleList = [];
-  // const lis = [
-  //   <li>
-  //     <a href="/read/1">html</a>
-  //   </li>,
-  //   <li>
-  //     <a href="/read/2">css</a>
-  //   </li>,
-  //   <li>
-  //     <a href="/read/3">javascript</a>
-  //   </li>,
-  // ];
-  let lis = titleList.map(() => {
-    return (
-      <li key={topics.id}>
-        <a href={"/read/" + topics.id}>{topics.title}</a>
+const Nav = (props) => {
+  for (let i = 0; i < props.topics.length; i++) {
+    const lis = [];
+    let t = props.topics[i];
+    lis.push(
+      <li key={t.id}>
+        <a href={"/read/" + t.id}>{t.title}</a>
       </li>
     );
-  });
-  console.log("titleList:", titleList);
-  console.log("lis:", lis);
+  }
   return (
     <nav>
       <ol>{lis}</ol>
@@ -49,9 +36,9 @@ const Article = () => {
 };
 function App() {
   const topics = [
-    { id: 1, title: "html", body: "html is ..." },
-    { id: 2, title: "css", body: "css is ..." },
-    { id: 3, title: "javascript", body: "javascript is ..." },
+    { id: 1, title: "html", desc: "html is ..." },
+    { id: 2, title: "css", desc: "css is ..." },
+    { id: 3, title: "javascript", desc: "javascript is ..." },
   ];
   return (
     <div>
