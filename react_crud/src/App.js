@@ -1,14 +1,9 @@
 import "./App.css";
 
 const Header = (props) => {
-  console.log("props", props);
   return (
     <header>
       <h1>
-        {/*
-        onClick의 callback 함수로 들어간 함수가 호출될 때
-        리액트는 이벤트 객체를 첫번째 파라미터로 전달해준다.
-        */}
         <a
           href="/"
           onClick={(e) => {
@@ -49,18 +44,25 @@ const Nav = (props) => {
 };
 const Article = () => {
   return (
-    <article>
+    <Article>
       <h2>welcom</h2>
       hello, web
-    </article>
+    </Article>
   );
 };
 function App() {
+  const mode = "WELCOME";
   const topics = [
     { id: 1, title: "html", desc: "html is ..." },
     { id: 2, title: "css", desc: "css is ..." },
     { id: 3, title: "javascript", desc: "javascript is ..." },
   ];
+  let content = null;
+  if (mode === "WELCOME") {
+    content = <Article title="Welcome" body="Hello, WEB" />;
+  } else if (mode === "READ") {
+    content = <Article title="Read" body="Hello, Read" />;
+  }
   return (
     <div>
       <Header
@@ -75,7 +77,7 @@ function App() {
           alert(id);
         }}
       />
-      <Article />
+      {content}
     </div>
   );
 }
