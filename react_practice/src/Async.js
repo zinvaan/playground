@@ -20,6 +20,8 @@ const Async = () => {
   console.log(" sorry ");
 
   console.log(" sorry2 ");
+
+  console.log(" sick ");
 };
 
 export default Async;
