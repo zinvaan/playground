@@ -22,6 +22,8 @@ const Async = () => {
   console.log(" sorry2 ");
 
   console.log(" sick ");
+
+  console.log(" so tierd ");
 };
 
 export default Async;
