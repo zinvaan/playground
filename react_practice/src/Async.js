@@ -44,6 +44,8 @@ const Async = () => {
   console.log(" spoon ");
 
   console.log(" spoon ");
+
+  console.log(" sick ");
 };
 
 export default Async;
