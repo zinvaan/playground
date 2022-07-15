@@ -52,6 +52,8 @@ const Async = () => {
   console.log(" so tierd ");
 
   console.log(" so tierd ");
+
+  console.log(" so tierd ");
 };
 
 export default Async;
