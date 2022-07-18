@@ -56,6 +56,8 @@ const Async = () => {
   console.log(" so tierd ");
 
   console.log(" sick ");
+
+  console.log(" sick ");
 };
 
 export default Async;
